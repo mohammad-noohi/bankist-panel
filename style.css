@@ -1,0 +1,391 @@
+/*
+ * Use this CSS to learn some intersting techniques,
+ * in case you're wondering how I built the UI.
+ * Have fun! 😁
+ */
+
+/* Fonts */
+@import url(fontiran.css);
+
+:root {
+  --yellow-gradient: linear-gradient(to top left, #ffb003, #ffcb03);
+  --green-gradient: linear-gradient(to top left, #39b385, #9be15d);
+  --red-gradient: linear-gradient(to top left, #e52a5a, #ff585f);
+  --green-color: #66c873;
+  --red-color: #f5465d;
+  --body-color: #444;
+  --body-background: #f3f3f3;
+  --border-color: #ccc;
+  --white-color: #fff;
+  --gray-color-e: #eee;
+  --gray-color-b: #bbb;
+  --gray-color-3: #333;
+  --gray-color-6: #666;
+  --gray-color-7: #777;
+  --gray-color-8: #888;
+  --form-input-bg: rgba(255, 255, 255, 0.4);
+  --form-input-focus-bg: rgba(255, 255, 255, 0.6);
+  --form-focus-btn: rgba(255, 255, 255, 0.8);
+  --shadow-color: rgba(0, 0, 0, 0.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "IRANYekanX", "Poppins", sans-serif;
+  color: var(--body-color);
+  background-color: var(--body-background);
+  height: 100vh;
+  padding: 2rem;
+}
+
+/* CUSTOME SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+
+  /* display: none; */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 2rem;
+  background: #888;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 2rem;
+  background: #dadada;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #eaeaea;
+}
+
+/* NAVIGATION */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.welcome {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+
+.logo {
+  height: 5.25rem;
+}
+
+.login {
+  display: flex;
+}
+
+.login__input {
+  border: none;
+  padding: 0.5rem 2rem;
+  font-size: 1.6rem;
+  font-family: inherit;
+  text-align: center;
+  width: 12rem;
+  border-radius: 10rem;
+  margin-right: 1rem;
+  color: inherit;
+  border: 1px solid var(--white-color);
+  transition: all 0.3s;
+  background-color: var(--white-color);
+  color: var(--gray-color-3);
+}
+
+.login__input:focus {
+  outline: none;
+  border: 1px solid var(--border-color);
+}
+
+.login__input::placeholder {
+  color: var(--gray-color-b);
+}
+
+.login__btn {
+  border: none;
+  background: none;
+  font-size: 2.2rem;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login__btn:hover,
+.login__btn:focus,
+.btn--sort:hover,
+.btn--sort:focus {
+  outline: none;
+  color: var(--gray-color-7);
+}
+
+/* MAIN */
+.app {
+  position: relative;
+  max-width: 100rem;
+  padding: 4rem 0;
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 15rem) auto;
+  gap: 2rem;
+  margin: 0 auto;
+
+  /* NOTE This creates the fade in/out anumation */
+  opacity: 0;
+  transition: all 1s;
+}
+
+.balance {
+  grid-column: 1 / span 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.balance__label {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin-bottom: -0.2rem;
+}
+
+.balance__date {
+  font-size: 1.4rem;
+  color: var(--gray-color-8);
+}
+
+.balance__value {
+  font-size: 4.5rem;
+  font-weight: 400;
+}
+
+/* MOVEMENTS */
+.movements {
+  grid-row: 2 / span 3;
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  overflow: auto;
+}
+
+.movements__row {
+  padding: 2.25rem 4rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-color-e);
+}
+
+.movements__type {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--white-color);
+  padding: 0.1rem 1rem;
+  border-radius: 10rem;
+  margin-right: 2rem;
+}
+
+.movements__date {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gray-color-6);
+}
+
+.movements__type--deposit {
+  background-image: var(--green-gradient);
+}
+
+.movements__type--withdrawal {
+  background-image: var(--red-gradient);
+}
+
+.movements__value {
+  font-size: 1.7rem;
+  margin-left: auto;
+}
+
+/* SUMMARY */
+.summary {
+  grid-row: 5 / 6;
+  display: flex;
+  align-items: baseline;
+  padding: 0 0.3rem;
+  margin-top: 1rem;
+}
+
+.summary__label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 0.8rem;
+}
+
+.summary__value {
+  font-size: 2.2rem;
+  margin-right: 2.5rem;
+}
+
+.summary__value--in,
+.summary__value--interest {
+  color: var(--green-color);
+}
+
+.summary__value--out {
+  color: var(--red-color);
+}
+
+.btn--sort {
+  margin-left: auto;
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* OPERATIONS */
+.operation {
+  border-radius: 1rem;
+  padding: 3rem 4rem;
+  color: var(--gray-color-3);
+}
+
+.operation--transfer {
+  background-image: var(--yellow-gradient);
+}
+
+.operation--loan {
+  background-image: var(--green-gradient);
+}
+
+.operation--close {
+  background-image: var(--red-gradient);
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--gray-color-3);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 2.5fr 2.5fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.4rem 1rem;
+}
+
+/* Exceptions for interst */
+.form.form--loan {
+  grid-template-columns: 2.5fr 1fr 2.5fr;
+}
+.form__label--loan {
+  grid-row: 2;
+}
+/* End exceptions */
+
+.form__input {
+  width: 100%;
+  border: none;
+  background-color: var(--form-input-bg);
+  font-family: inherit;
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--gray-color-3);
+  padding: 0.3rem 1rem;
+  border-radius: 0.7rem;
+  transition: all 0.3s;
+}
+
+.form__input:focus {
+  outline: none;
+  background-color: var(--form-input-focus-bg);
+}
+
+.form__label {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.form__btn {
+  border: none;
+  border-radius: 0.7rem;
+  font-size: 1.8rem;
+  color: var(--body-color);
+  background-color: var(--white-color);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.form__btn:focus {
+  outline: none;
+  background-color: var(--form-focus-btn);
+}
+
+.logout-timer {
+  padding: 0 0.3rem;
+  margin-top: 1.9rem;
+  text-align: right;
+  font-size: 1.25rem;
+}
+
+.timer {
+  font-weight: 600;
+}
+
+/* Dark Theme Toggler */
+.theme-toggler-btn {
+  background-color: var(--body-background);
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 5rem;
+  height: 5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 1rem var(--shadow-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.theme-toggler-btn .sun-icon,
+.theme-toggler-btn .moon-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--body-color);
+}
+
+.theme-toggler-btn .sun-icon {
+  display: block;
+}
+
+.theme-toggler-btn .moon-icon {
+  display: none;
+}
+
+.theme-toggler-btn.dark .sun-icon {
+  display: none;
+}
+.theme-toggler-btn.dark .moon-icon {
+  display: block;
+}
